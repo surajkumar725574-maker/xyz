@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngineerHub - Teacher Section</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">EngineerHub</div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="assistant.html">AI Assistant</a>
+      <a href="generator.html">Study Generator</a>
+      <a href="teacher.html">Teacher Section</a>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <h1>Teacher Section</h1>
+    <p>Teachers can upload notes, create assignments, and share important topics.</p>
+  </section>
+
+  <section class="teacher-layout">
+    <div class="teacher-card">
+      <h2>Upload Notes</h2>
+      <input type="file" id="noteFile" />
+      <button onclick="uploadNote()">Upload</button>
+      <p id="uploadMessage"></p>
+    </div>
+
+    <div class="teacher-card">
+      <h2>Create Assignment</h2>
+      <input type="text" id="assignmentTitle" placeholder="Assignment title" />
+      <textarea id="assignmentDetails" placeholder="Write assignment details"></textarea>
+      <button onclick="createAssignment()">Create</button>
+
+      <ul id="assignmentList" class="task-list"></ul>
+    </div>
+
+    <div class="teacher-card">
+      <h2>Important Topics</h2>
+      <input type="text" id="topicInput" placeholder="Enter important topic" />
+      <button onclick="addTopic()">Add Topic</button>
+
+      <ul id="topicList" class="task-list"></ul>
+    </div>
+  </section>
+
+<<<<<<< HEAD
+  <script src="project-1.js"></script>
+</body>
+</html>
+=======
+  <script src="../project-1.js"></script>
+</body>
+</html>
+>>>>>>> b446b31a794524af9a35ca18121b5131229af6b8

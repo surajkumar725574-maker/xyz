@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngineerHub - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">EngineerHub</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="./pages/assistant.html">AI Assistant</a>
+<<<<<<< HEAD
+      <a href="./pages//generator.html">Study Generator</a>
+=======
+      <a href="./pages/generator.html">Study Generator</a>
+>>>>>>> b446b31a794524af9a35ca18121b5131229af6b8
+      <a href="./pages/teacher.html">Teacher Section</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Study Smarter. Build Better. Stay Consistent.</h1>
+      <p>Your personal engineering study platform for coding, subjects, tasks, files, and AI-powered learning.</p>
+      <div class="hero-buttons">
+        <a href="assistant.html" class="btn primary">Open Assistant</a>
+        <a href="generator.html" class="btn secondary">Generate Study Plan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Platform Features</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>AI Chatbox</h3>
+        <p>Ask doubts, generate answers, and connect API later for automatic responses.</p>
+      </div>
+
+      <div class="card">
+        <h3>Task Manager</h3>
+        <p>Add and remove daily study tasks like DSA, Java, COA, FLA, and web development.</p>
+      </div>
+
+      <div class="card">
+        <h3>Consistency Calendar</h3>
+        <p>Track daily discipline using red and green dots, similar to LeetCode activity tracking.</p>
+      </div>
+
+      <div class="card">
+        <h3>File Section</h3>
+        <p>Keep notes, PDFs, assignments, and subject materials organized in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tasks-section">
+    <h2>Example: How to Add a Task</h2>
+    <div class="task-demo">
+      <p><b>Example:</b> “Complete 20 DSA questions today”</p>
+      <input type="text" id="taskInput" placeholder="Enter your task here..." />
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <ul id="taskList" class="task-list"></ul>
+  </section>
+
+  <section class="calendar-section">
+    <h2>Consistency Calendar</h2>
+    <div id="calendar" class="calendar"></div>
+  </section>
+
+  <script src="project-1.js"></script>
+</body>
+</html>
