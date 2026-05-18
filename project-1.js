@@ -1,49 +1,58 @@
-// TASKS
+console.log("js file connected");
+function addTask(){
 
-function addTask() {
-  let input = document.getElementById("taskInput");
-  let taskList = document.getElementById("taskList");
+  let input =
+    document.getElementById("taskInput");
 
-  if (!input || !taskList) return;
+  let taskList =
+    document.getElementById("taskList");
 
-  if (input.value.trim() === "") {
-    alert("Please enter a task.");
+  if(!input || !taskList) return;
+
+  if(input.value.trim()===""){
+    alert("Enter task");
     return;
   }
 
-  let li = document.createElement("li");
+  let li=document.createElement("li");
 
-  li.innerHTML = `
+  li.innerHTML=`
     <span>${input.value}</span>
-    <button class="delete-btn" onclick="removeTask(this)">
+
+    <button
+      class="delete-btn"
+      onclick="removeTask(this)"
+    >
       Remove
     </button>
   `;
 
   taskList.appendChild(li);
 
-  input.value = "";
+  input.value="";
 }
 
-function removeTask(button) {
+function removeTask(button){
   button.parentElement.remove();
 }
 
-// CALENDAR
+function createCalendar(){
 
-function createCalendar() {
-  let calendar = document.getElementById("calendar");
+  let calendar =
+    document.getElementById("calendar");
 
-  if (!calendar) return;
+  if(!calendar) return;
 
-  for (let i = 0; i < 80; i++) {
-    let dot = document.createElement("div");
+  for(let i=0;i<80;i++){
+
+    let dot=document.createElement("div");
 
     dot.classList.add("dot");
 
-    if (Math.random() > 0.35) {
+    if(Math.random()>0.35){
       dot.classList.add("green");
-    } else {
+    }
+    else{
       dot.classList.add("red");
     }
 
@@ -53,18 +62,20 @@ function createCalendar() {
 
 createCalendar();
 
-// CHATBOX
+async function sendMessage() {
 
-function sendMessage() {
-  let input = document.getElementById("chatInput");
-  let chatMessages = document.getElementById("chatMessages");
+  let input =
+    document.getElementById("chatInput");
 
-  if (!input || !chatMessages) return;
+  let chatMessages =
+    document.getElementById("chatMessages");
+
+  if(!input || !chatMessages) return;
 
   let message = input.value.trim();
 
-  if (message === "") {
-    alert("Please type something.");
+  if(message === ""){
+    alert("Type something");
     return;
   }
 
@@ -76,115 +87,125 @@ function sendMessage() {
 
   chatMessages.appendChild(userMsg);
 
+  input.value = "";
+
   let botMsg = document.createElement("div");
 
   botMsg.classList.add("bot-message");
 
-  botMsg.innerText =
-    "API is not connected yet.";
+  botMsg.innerText = "Thinking...";
 
   chatMessages.appendChild(botMsg);
-
-  input.value = "";
-
-  chatMessages.scrollTop =
-    chatMessages.scrollHeight;
-}
-
-// STUDY GENERATOR
-<<<<<<< HEAD
-async function generatePlan() {
-
-  let search = document.getElementById("studySearch");
-
-  let result = document.getElementById("studyResult");
-=======
-
-function generatePlan() {
-  let search =
-    document.getElementById("studySearch");
-
-  let result =
-    document.getElementById("studyResult");
->>>>>>> b446b31a794524af9a35ca18121b5131229af6b8
-
-  if (!search || !result) return;
-
-  let value = search.value.trim();
-
-  if (value === "") {
-    alert("Please enter a topic.");
-    return;
-  }
-
-  result.innerHTML = `
-<<<<<<< HEAD
-    <p>Generating AI study plan...</p>
-  `;
 
   try {
 
     const response = await fetch(
-      "http://localhost:3000/generate-plan",
+      "https://prepilot.onrender.com/",
       {
         method: "POST",
 
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
 
         body: JSON.stringify({
-          topic: value,
-        }),
+          message: message
+        })
       }
     );
 
     const data = await response.json();
 
-    result.innerHTML = `
-      <h2>Study Plan for: ${value}</h2>
+    botMsg.innerText = data.reply;
 
-      <pre>${data.result}</pre>
-    `;
+  } catch(error){
 
-  } catch (error) {
-
-    result.innerHTML = `
-      <p>Could not connect to AI backend.</p>
-    `;
+    botMsg.innerText =
+      "Could not connect to AI backend.";
 
     console.log(error);
   }
 }
 
-// TEACHER SECTION
+async function generatePlan(){
 
-function uploadNote() {
+  let search =
+    document.getElementById("studySearch");
+
+  let result =
+    document.getElementById("studyResult");
+
+  if(!search || !result) return;
+
+  let value=search.value.trim();
+
+  if(value===""){
+    alert("Enter topic");
+    return;
+  }
+
+  result.innerHTML=
+    "<p>Generating AI plan...</p>";
+
+  try{
+
+    const response=await fetch(
+      "https://prepilot.onrender.com",
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+          topic:value
+        })
+      }
+    );
+
+    const data=await response.json();
+
+    result.innerHTML=`
+      <h2>${value}</h2>
+
+      <pre>${data.result}</pre>
+    `;
+
+  }catch(error){
+
+    result.innerHTML=
+      "<p>Backend connection failed.</p>";
+
+    console.log(error);
+  }
+}
+
+function uploadNote(){
+
   let fileInput =
     document.getElementById("noteFile");
 
   let message =
     document.getElementById("uploadMessage");
 
-  if (!fileInput || !message) return;
+  if(!fileInput || !message) return;
 
-  if (fileInput.files.length === 0) {
-    message.innerText =
-      "Please choose a file first.";
+  if(fileInput.files.length===0){
 
-    message.style.color = "red";
+    message.innerText=
+      "Choose file first";
 
     return;
   }
 
-  message.innerText =
-    "File selected: " +
+  message.innerText=
+    "Uploaded: "+
     fileInput.files[0].name;
-
-  message.style.color = "green";
 }
 
-function createAssignment() {
+function createAssignment(){
+
   let title =
     document.getElementById("assignmentTitle");
 
@@ -194,127 +215,50 @@ function createAssignment() {
   let list =
     document.getElementById("assignmentList");
 
-  if (!title || !details || !list) return;
+  if(!title || !details || !list) return;
 
-  if (
-    title.value.trim() === "" ||
-    details.value.trim() === ""
-  ) {
-    alert("Please fill all fields.");
-    return;
-  }
+  let li=document.createElement("li");
 
-=======
-    <h2>Study Plan for: ${value}</h2>
-
-    <ul>
-      <li>Learn theory</li>
-      <li>Make notes</li>
-      <li>Solve beginner questions</li>
-      <li>Solve PYQs</li>
-      <li>Revise mistakes</li>
-    </ul>
-  `;
-}
-
-// TEACHER SECTION
-
-function uploadNote() {
-  let fileInput =
-    document.getElementById("noteFile");
-
-  let message =
-    document.getElementById("uploadMessage");
-
-  if (!fileInput || !message) return;
-
-  if (fileInput.files.length === 0) {
-    message.innerText =
-      "Please choose a file first.";
-
-    message.style.color = "red";
-
-    return;
-  }
-
-  message.innerText =
-    "File selected: " +
-    fileInput.files[0].name;
-
-  message.style.color = "green";
-}
-
-function createAssignment() {
-  let title =
-    document.getElementById("assignmentTitle");
-
-  let details =
-    document.getElementById("assignmentDetails");
-
-  let list =
-    document.getElementById("assignmentList");
-
-  if (!title || !details || !list) return;
-
-  if (
-    title.value.trim() === "" ||
-    details.value.trim() === ""
-  ) {
-    alert("Please fill all fields.");
-    return;
-  }
-
->>>>>>> b446b31a794524af9a35ca18121b5131229af6b8
-  let li = document.createElement("li");
-
-  li.innerHTML = `
+  li.innerHTML=`
     <span>
       <b>${title.value}</b><br>
       ${details.value}
     </span>
 
-    <button class="delete-btn"
-    onclick="removeTask(this)">
+    <button
+      class="delete-btn"
+      onclick="removeTask(this)"
+    >
       Remove
     </button>
   `;
 
   list.appendChild(li);
 
-  title.value = "";
-  details.value = "";
+  title.value="";
+  details.value="";
 }
+document.querySelectorAll(".subject-card").forEach((card) => {
+  card.addEventListener("click", () => {
+    const input = document.getElementById("chatInput");
 
-function addTopic() {
-  let input =
-    document.getElementById("topicInput");
+    if (input) {
+      input.value = "Explain " + card.innerText + " in simple words.";
+      sendMessage();
+    }
+  });
+});
 
-  let list =
-    document.getElementById("topicList");
+document.querySelectorAll(".card").forEach((card) => {
+  card.addEventListener("click", () => {
+    const input = document.getElementById("studySearch");
 
-  if (!input || !list) return;
-
-  if (input.value.trim() === "") {
-    alert("Please enter a topic.");
-    return;
-  }
-
-  let li = document.createElement("li");
-
-  li.innerHTML = `
-    <span>${input.value}</span>
-
-    <button class="delete-btn"
-    onclick="removeTask(this)">
-      Remove
-    </button>
-  `;
-
-  list.appendChild(li);
-
-  input.value = "";
-<<<<<<< HEAD
+    if (input) {
+      input.value = card.innerText;
+      generatePlan();
+    }
+  });
+});
+function openFile(fileName) {
+  alert(fileName + " selected. File upload/open feature will be added later.");
 }
-=======
-}
->>>>>>> b446b31a794524af9a35ca18121b5131229af6b8
